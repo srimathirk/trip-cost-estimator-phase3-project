@@ -1,0 +1,7 @@
+[T] create db diagrams
+[ ] create tables in sqlalchemy
+[ ] create seed file populate in seed.py
+[ ] work on methods
+[ ] work on cli.py and give inputs and get outputs
+[ ] use debug to get correct results
+[ ] do more testing
