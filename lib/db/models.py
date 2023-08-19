@@ -32,3 +32,15 @@ class Trip(Base):
     user = relationship('User', backref="trip")
     def __repr__(self):
         return f'{self.trip_id} starts from {self.start_place} ends at {self.destination_place} has gas price {self.gas_cost} mileage:{self.mileage}'
+
+
+#Expense class (table)
+class Expense(Base):
+    __tablename__='expenses'
+    expense_id = Column(Integer(),primary_key=True)
+    trip_id=Column(Integer(),ForeignKey('trips.trip_id'))
+    cost_category = Column(String())
+    amount = Column(Float())
+    trip = relationship('Trip',backref='expense')
+    def __repr__(self):
+        return f'{self.expense_id} whose trip{self.trip_id} category {self.cost_category} has price {self.amount}'
