@@ -15,4 +15,20 @@ class User(Base):
     Email = Column(String())
     Phone = Column(String())
     created_at = Column(DateTime(),server_default=func.now())
-    
+    trips = relationship("Trip", backref="user")
+    def __repr__(self):
+        return f'{self.user_id}. name: {self.user_name} email:{self.Email}, phone: {self.Phone} created_at:{self.created_at}'
+
+#Trip class (table)
+class Trip(Base):
+    __tablename__='trips'
+    trip_id = Column(Integer(),primary_key=True)
+    start_place = Column(String())
+    destination_place = Column(String())
+    gas_cost = Column(Float())
+    mileage = Column(Float())
+    user_id = Column(Integer(), ForeignKey('users.user_id'))
+    #expense = relationship('Expense', backref="trip")
+    user = relationship('User', backref="trip")
+    def __repr__(self):
+        return f'{self.trip_id} starts from {self.start_place} ends at {self.destination_place} has gas price {self.gas_cost} mileage:{self.mileage}'
